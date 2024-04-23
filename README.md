@@ -1,2 +1,2 @@
 # Sorteador de números
-Feito com o curso 'Lógica de programação: praticando com desafios' da Alura.
+Feito ao longo do curso 'Lógica de programação: praticando com desafios' da Alura.
