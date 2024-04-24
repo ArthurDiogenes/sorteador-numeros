@@ -19,14 +19,15 @@ function sortear() {
     let resultado = document.getElementById('resultado');
     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${sorteados}</label>`;
 
-    alterarStatusBotao();
+    alterarStatusBotaoReiniciar();
+    alterarStatusBotaoSortear();
 }
 
 function obterNumeroAleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function alterarStatusBotao() {
+function alterarStatusBotaoReiniciar() {
     let botao = document.getElementById('btn-reiniciar');
 
     if (botao.classList.contains('container__botao-desabilitado')) {
@@ -44,5 +45,18 @@ function reiniciar() {
     document.getElementById('quantidade').value = '';
     document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>'
 
-    alterarStatusBotao();
+    alterarStatusBotaoReiniciar();
+    alterarStatusBotaoSortear();
+}
+
+function alterarStatusBotaoSortear() {
+    let botao = document.getElementById('btn-sortear');
+
+    if (botao.classList.contains('container__botao-desabilitado')) {
+        botao.classList.remove('container__botao-desabilitado');
+        botao.classList.add('container__botao');
+    }else if (botao.classList.contains('container__botao')) {
+        botao.classList.remove('container__botao');
+        botao.classList.add('container__botao-desabilitado');
+    }
 }
