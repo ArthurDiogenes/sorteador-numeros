@@ -6,21 +6,28 @@ function sortear() {
     let sorteados = [];
     let numero;
 
-    for (let i = 0; i < quantidade; i++) {
-        numero = obterNumeroAleatorio(de, ate);
+    let intervalo = parseInt(ate) - parseInt(de);
 
-        while (sorteados.includes(numero)) {
+    if (quantidade > intervalo) {
+        alert('Escolha um intervalo maior de números.');
+        reiniciarSemDesabilitarBotaoSortear();
+    } else {
+        for (let i = 0; i < quantidade; i++) {
             numero = obterNumeroAleatorio(de, ate);
+    
+            while (sorteados.includes(numero)) {
+                numero = obterNumeroAleatorio(de, ate);
+            }
+    
+            sorteados.push(numero);
         }
-
-        sorteados.push(numero);
+    
+        let resultado = document.getElementById('resultado');
+        resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${sorteados}</label>`;
+    
+        alterarStatusBotaoReiniciar();
+        alterarStatusBotaoSortear();
     }
-
-    let resultado = document.getElementById('resultado');
-    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${sorteados}</label>`;
-
-    alterarStatusBotaoReiniciar();
-    alterarStatusBotaoSortear();
 }
 
 function obterNumeroAleatorio(min, max) {
@@ -47,6 +54,12 @@ function reiniciar() {
 
     alterarStatusBotaoReiniciar();
     alterarStatusBotaoSortear();
+}
+
+function reiniciarSemDesabilitarBotaoSortear() {
+    document.getElementById('ate').value = '';
+    document.getElementById('de').value = '';
+    document.getElementById('quantidade').value = '';
 }
 
 function alterarStatusBotaoSortear() {
